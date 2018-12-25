@@ -1,0 +1,29 @@
+<div>
+  <app-transaction-update #formTransaction *ngIf="showDetail" [transaction]="selectedTransaction" (result)="prosesResult($event)"> </app-transaction-update>
+</div>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead align="center">
+      <th>ID-Trx</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Amount Sign</th>
+      <th>Username</th>
+      <th>Acc.Number</th>
+      <th>Action</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let trx of listTransaction">
+        <td align="center"><a (click)="selectTransaction(trx);"><u>{{trx.id}}</u></a></td>
+        <!-- <td align="center"><u>{{trx.id}}</u></td> -->
+        <td>{{trx.type}}</td>
+        <td align="right">{{trx.amount | currency:'Rp '}}</td>
+        <td align="center">{{trx.amountsign}}</td>
+        <td align="center">{{trx.account ? trx.account.customer.username  : " "}}</td>
+        <td align="center">{{trx.account ? trx.account.accountNumber  : " "}}</td>
+        <td align="center"><button class="btn btn-danger btn-sm" (click)="deleteTransaction(trx.id);">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

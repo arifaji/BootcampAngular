@@ -1,0 +1,42 @@
+<div>
+  <app-customer-update #formCustomer *ngIf="showDetail" [customer]="selectedCustomer" (result)="prosesResult($event)"> </app-customer-update>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped border">
+      <thead>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Birth Date</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Phone Type</th>
+        <th>Phone Number</th>
+        <th colspan="3" >Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cust of listCustomer">
+          <td>{{cust.customerNumber}}</td>
+          <td>{{cust.firstName}}</td>
+          <td>{{cust.lastName}}</td>
+          <td>{{cust.birthDate}}</td>
+          <td>{{cust.username}}</td>
+          <td>{{cust.password}}</td>
+          <td>{{cust.phoneType}}</td>
+          <td>{{cust.phoneNumber }}</td>
+          <td>
+              <i class="far fa-eye" (click)="viewAccount(cust.customerNumber);"></i>
+              <!-- <button class="btn btn-primary btn-sm" (click)="viewAccount(cust.customerNumber);">View</button> -->
+          </td>
+          <td>
+              <i class="fas fa-edit" (click)="selectCustomer(cust);"></i>
+            <!-- <button class="btn btn-info btn-sm" (click)="selectCustomer(cust);">Edit</button> -->
+          </td>
+          <td>
+              <i class="fas fa-trash" (click)="deleteCustomer(cust.customerNumber);"></i>
+              <!-- <button class="btn btn-danger btn-sm" (click)="deleteCustomer(cust.customerNumber);">Delete</button> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

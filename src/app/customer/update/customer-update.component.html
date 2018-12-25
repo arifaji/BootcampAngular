@@ -1,0 +1,67 @@
+<!-- <form [formGroup]="customerFormGroup">
+    First Name : <input type="text" formControlName="firstName">
+    <br/><br/>
+    Last Name : <input type="text" formControlName="lastName">
+    <br/><br/>
+    Birth Date : <input type="date" formControlName="birthDate">
+    <br/><br/>
+    Username : <input type="text" formControlName="username">
+    <br/><br/>
+    Password : <input type="text" formControlName="password">
+    <br/><br/>
+    Phone Type : <input type="text" formControlName="phoneType">
+    <br/><br/>
+    Phone Number : <input type="text" formControlName="phoneNumber">
+    <br/><br/>
+    
+    <button (click)="submitData()" type="submit" [disabled]="!customerFormGroup.valid">Submit</button>
+    <button (click)="cancelUpdate()">Close</button>
+</form> -->
+<h3>Edit Customer</h3>
+    <form [formGroup]="customerFormGroup">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-md-3">First Name</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="firstName" class="form-control"  placeholder="Input your first name..">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-md-3">Last Name</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="lastName" class="form-control"  placeholder="Input your last name..">
+            </div>
+        </div><div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-md-3">Birth Date</label>
+            <div class="col-sm-4">
+                <input type="date" formControlName="birthDate" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-md-3">Username</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="username" class="form-control"  placeholder="Input your username..">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-md-3">Password</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="password" class="form-control"  placeholder="Input your password..">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-md-3">Phone Type</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="phoneType" class="form-control"  placeholder="Input your first name..">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label offset-md-3">Phone Number</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="phoneNumber" class="form-control"  placeholder="Input your phone number..">
+            </div>
+        </div>
+
+        <button type="submit" (click)="submitData()" class="btn btn-primary offset-md-3">Submit</button>
+        <button class="btn btn-danger offset-md-3" (click)="cancelUpdate()">Close</button>
+    </form>
+    <br/><br/>

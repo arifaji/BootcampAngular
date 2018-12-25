@@ -1,0 +1,25 @@
+<div>
+  <app-account-update #formAccount *ngIf="showDetail" [account]="selectedAccount" (result)="prosesResult($event)"> </app-account-update>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered">
+      <thead align="center">
+        <th>Acc.Number</th>
+        <th>Open Date</th>
+        <th>Balance</th>
+        <th>Username</th>
+        <th>Action</th>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let acc of listAccount">
+          <td align="center"><a (click)="selectAccount(acc);"><u>{{acc.accountNumber}}</u></a></td>
+          <!-- <td align="center"><u>{{acc.accountNumber}}</u></td> -->
+          <td align="center">{{acc.openDate}}</td>
+          <td align="right">{{acc.balance | currency:'Rp '}}</td>
+          <td>{{acc.customer ? acc.customer.username : " "}}</td>
+          <td align="center"><button class="btn btn-danger btn-sm" (click)="deleteAccount(acc.accountNumber);">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
