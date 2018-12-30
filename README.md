@@ -1,6 +1,9 @@
 # BankSoul
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
+Jangan lupa install untuk node_module nya.
+Untuk Backend pakai [JavaSpring](https://github.com/medasaki/BootcampJavaSpring) dan [NodeJS](https://github.com/medasaki/BootcampNodeJS) yang API gabung dalam nginx.
+Configurasi nginx ada di repo [NodeJS](https://github.com/medasaki/BootcampNodeJS)
 
 ## Development server
 
