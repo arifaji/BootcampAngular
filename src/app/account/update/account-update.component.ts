@@ -36,7 +36,7 @@ export class AccountUpdateComponent implements OnInit {
   }
   getCustomer(){
     this.accountService.getListCustomer().subscribe((response)=>{
-      this.selectcustomer=response;
+      this.selectcustomer=response['values'];
       console.log(this.selectcustomer);
     },(err)=>{
       alert('error : '+JSON.stringify(err));
@@ -82,6 +82,11 @@ export class AccountUpdateComponent implements OnInit {
 
   cancelUpdate(){
     this.result.emit(true);
+  }
+  setSelectedCustomer(customer : Customer){
+    this.selectcustomer = customer;
+    this.accountFormGroup.controls['customer'].setValue(customer.customerNumber);
+    this.accountFormGroup.updateValueAndValidity();
   }
 
 }

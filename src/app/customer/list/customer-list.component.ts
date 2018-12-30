@@ -28,7 +28,8 @@ export class CustomerListComponent implements OnInit {
   loadData(){
     this.customerService.getList().subscribe((response)=>{
       console.log(JSON.stringify(response));
-      Object.assign(this.listCustomer, response);
+        this.listCustomer=[];
+      Object.assign(this.listCustomer, response['values']);
       //alert('list customer : '+this.listCustomer ? this.listCustomer.length)
     }, (err)=>{
       alert('error : '+JSON.stringify(err));
@@ -64,6 +65,7 @@ export class CustomerListComponent implements OnInit {
     if(confirm('Delete this Data ?')){
       this.customerService.delete(customerNumber).subscribe(res=>{
         alert('Data Deleted');
+        location.reload();
         this.loadData();
       },err =>{
         alert('Failed');
@@ -72,6 +74,6 @@ export class CustomerListComponent implements OnInit {
   }
   viewAccount(customer:Customer){
     console.log(customer.customerNumber);
-    this.router.navigate(['/accountselect',{customer}]);
+    this.router.navigate(['/account',{customer}]);
   }
 }

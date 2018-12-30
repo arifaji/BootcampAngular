@@ -31,6 +31,7 @@ export class CustomerUpdateComponent implements OnInit {
       phoneType:[''],
       phoneNumber:['']
     });
+    this.updateData();
   }
   
   submitData(){
@@ -44,7 +45,7 @@ export class CustomerUpdateComponent implements OnInit {
       customer.phoneType = this.customerFormGroup.controls['phoneType'].value;
       customer.phoneNumber = this.customerFormGroup.controls['phoneNumber'].value;
 
-      this.customerService.insert(customer).subscribe((response)=>{
+      this.customerService.update(customer).subscribe((response)=>{
         console.log(JSON.stringify(response));
         this.result.emit(true);
       }, (err)=>{

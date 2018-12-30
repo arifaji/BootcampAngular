@@ -1,17 +1,3 @@
-<!-- <form [formGroup]="transactioniFormGroup">
-    Type : <input type="text" formControlName="type" placeholder="Input Type..">
-    <br/><br/>
-    Amount : <input type="number" formControlName="amount" placeholder="Input Amount..">
-    <br/><br/>
-    Amount Sign : <input type="text" formControlName="amountsign" placeholder="Input Type..">
-    <br/><br/>
-    Account Number : 
-    <select formControlName="account">
-      <option *ngFor="let acc of selectaccount" [ngValue]="acc.accountNumber">{{acc.accountNumber}}</option>
-    </select>
-    <br/><br/>
-    <button (click)="submitData()" type="submit" [disabled]="!transactioniFormGroup.valid">Submit</button>
-</form> -->
 <h3>Insert Transaction</h3>
 <form [formGroup]="transactioniFormGroup">
     <div class="form-group row">
@@ -36,9 +22,10 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label offset-md-3">Account Number</label>
         <div class="col-sm-4">
-            <select formControlName="account">
+            <app-combo-account (account)="setSelectedAccount($event)"></app-combo-account>
+            <!-- <select formControlName="account">
               <option *ngFor="let acc of selectaccount" [ngValue]="acc.accountNumber">{{acc.accountNumber}}</option>
-            </select>   
+            </select>    -->
         </div>
     </div>
     

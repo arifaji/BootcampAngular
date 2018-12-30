@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountSelectComponent } from './account-select.component';
+import { ComboAccountComponent } from './combo-account.component';
 
-describe('AccountSelectComponent', () => {
-  let component: AccountSelectComponent;
-  let fixture: ComponentFixture<AccountSelectComponent>;
+describe('ComboAccountComponent', () => {
+  let component: ComboAccountComponent;
+  let fixture: ComponentFixture<ComboAccountComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountSelectComponent ]
+      declarations: [ ComboAccountComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountSelectComponent);
+    fixture = TestBed.createComponent(ComboAccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

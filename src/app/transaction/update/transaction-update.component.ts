@@ -36,7 +36,7 @@ export class TransactionUpdateComponent implements OnInit {
 
   getTransaction(){
     this.transactionService.getListAccount().subscribe((response)=>{
-      this.selectaccount=response;
+      this.selectaccount=response['values'];
       console.log(this.selectaccount);
     },(err)=>{
       alert('error : '+JSON.stringify(err));
@@ -58,9 +58,10 @@ export class TransactionUpdateComponent implements OnInit {
       }
 
       transaction.account = pilihaccount;
-      this.transactionService.insert(transaction).subscribe((response)=>{
+      this.transactionService.update(transaction).subscribe((response)=>{
         console.log(JSON.stringify(response));
         this.result.emit(true);
+        location.reload();
       }, (err)=>{
         alert('error : '+JSON.stringify(err));
       });
@@ -84,5 +85,10 @@ export class TransactionUpdateComponent implements OnInit {
 
   cancelUpdate(){
     this.result.emit(true);
+  }
+  setSelectedAccount(account : Account){
+    this.selectaccount = account;
+    this.transactionFormGroup.controls['account'].setValue(account.accountNumber);
+    this.transactionFormGroup.updateValueAndValidity();
   }
 }

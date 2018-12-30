@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-create',
@@ -18,7 +19,7 @@ export class CustomerCreateComponent implements OnInit {
   customerFormGroup: FormGroup;
   
   //dependency injektor
-  constructor(private customerService: CustomerService, private formBuilder:FormBuilder) { }
+  constructor(private customerService: CustomerService, private formBuilder:FormBuilder,private router: Router) { }
 
   ngOnInit() {
     this.customerFormGroup = this.formBuilder.group({
@@ -47,6 +48,7 @@ export class CustomerCreateComponent implements OnInit {
       this.customerService.insert(customer).subscribe((response)=>{
         console.log(JSON.stringify(response));
         this.result.emit(true);
+        this.router.navigate(['/customer'])
       }, (err)=>{
         alert('error : '+JSON.stringify(err));
       });

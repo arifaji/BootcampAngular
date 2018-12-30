@@ -1,0 +1,6 @@
+<select class="form-control" (change)="onChange($event.target.value)">
+    <option value="" disabled>-= Select Account - Username =-</option>
+    <option *ngFor="let acc of listAccount; let i = index" [value]="i" >
+      {{acc.accountNumber + " - " +  acc.customer.username}}
+    </option>
+  </select>

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { AccountService } from '../account.service';
 import { AccountUpdateComponent } from '../update/account-update.component';
 import { Account } from '../account';
+import { AccountService } from '../account.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-list',
@@ -22,43 +22,29 @@ export class AccountListComponent implements OnInit {
   showDetail: boolean = false;
   selectedAccount : Account = new Account();
 
-  constructor(private accountService: AccountService, private formBuilder:FormBuilder, private activatedRoute:ActivatedRoute) { }
+  constructor(private accountService: AccountService, private formBuilder:FormBuilder, private activatedRoute:ActivatedRoute, private router:Router) { }
 
   accountFormGroup:FormGroup;
   
-  // ngOnInit(){
-  //   this.activatedRoute.params.subscribe(params=>{
-  //     const customer:String=params['customer'];
-  //     console.log(customer);
-  //     this.loadData(customer);
-  //   })
-  // }
-  // loadData(customer?){
-  //   this.accountService.getList(customer).subscribe((response)=>{
-  //     console.log(JSON.stringify(response));
-  //     this.listAccount=[];
-  //     Object.assign(this.listAccount, response);
-  //   }, (err)=>{
-  //     alert('error : '+JSON.stringify(err));
-  //   });
-  // }
-
-//===========On Init Old Fungsi Load Data 
-  ngOnInit() {
-    this.loadData();
+  ngOnInit(){
+    this.activatedRoute.params.subscribe(params=>{
+      const customer:String=params['customer'];
+      console.log(customer);
+      this.loadData(customer);
+    })
   }
-
-  loadData(){
-    this.accountService.getListe().subscribe((response)=>{
+  loadData(customer?){
+    this.accountService.getList(customer).subscribe((response)=>{
       console.log(JSON.stringify(response));
-      Object.assign(this.listAccount, response);
+      this.listAccount=[];
+      Object.assign(this.listAccount, response['values']);
     }, (err)=>{
       alert('error : '+JSON.stringify(err));
     });
   }
+
 //===========Batas Fungsi Load Data  
   selectAccount(account: Account){
-    
     let copyAccount = new Account();
     copyAccount.accountNumber = account.accountNumber;
     copyAccount.openDate = account.openDate;
@@ -69,7 +55,6 @@ export class AccountListComponent implements OnInit {
     this.showDetail = true;
     if(this.formAccount)
     this.formAccount.updateData();
-    this.topFunction();
   }
 
   prosesResult(result){
@@ -83,16 +68,16 @@ export class AccountListComponent implements OnInit {
     if(confirm('Hapus data ?')){
       this.accountService.delete(accountNumber).subscribe(res =>{
         alert('berhasil');
-        this.loadData();
+        location.reload();
+        
       }, err =>{
         alert('gagal');
       });
     }
   }
-
-  topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+  viewTransaction(account:Account){
+    console.log(account.accountNumber);
+    this.router.navigate(['/transactionlist',{account}]);
   }
 
 }

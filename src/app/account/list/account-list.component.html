@@ -2,23 +2,31 @@
   <app-account-update #formAccount *ngIf="showDetail" [account]="selectedAccount" (result)="prosesResult($event)"> </app-account-update>
 </div>
 <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table  table-striped border">
       <thead align="center">
         <th>Acc.Number</th>
         <th>Open Date</th>
         <th>Balance</th>
         <th>Username</th>
-        <th>Action</th>
+        <th colspan="3">Action</th>
       </thead>
   
-      <tbody>
+      <tbody  align="center">
         <tr *ngFor="let acc of listAccount">
-          <td align="center"><a (click)="selectAccount(acc);"><u>{{acc.accountNumber}}</u></a></td>
+          <td ><a (click)="selectAccount(acc);"><u>{{acc.accountNumber}}</u></a></td>
           <!-- <td align="center"><u>{{acc.accountNumber}}</u></td> -->
-          <td align="center">{{acc.openDate}}</td>
-          <td align="right">{{acc.balance | currency:'Rp '}}</td>
+          <td >{{acc.openDate}}</td>
+          <td >{{acc.balance | currency:'Rp '}}</td>
           <td>{{acc.customer ? acc.customer.username : " "}}</td>
-          <td align="center"><button class="btn btn-danger btn-sm" (click)="deleteAccount(acc.accountNumber);">Delete</button></td>
+          <td>
+            <button class="btn"><i class="far fa-eye" (click)="viewTransaction(acc.accountNumber);"></i></button>
+          </td>
+          <td>
+              <button class="btn"><i class="fas fa-edit" (click)="selectAccount(acc);"></i></button>
+          </td>
+          <td>
+              <button class="btn"><i class="fas fa-trash" (click)="deleteAccount(acc.accountNumber);"></i></button>
+          </td>
         </tr>
       </tbody>
     </table>

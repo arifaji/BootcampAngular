@@ -15,26 +15,26 @@ export class AccountService {
     if(customer){
       params = '?customer=' + customer;
     }
-    return this.httpClient.get('http://localhost:8080/test/accountlist'+params);
+    return this.httpClient.get('http://localhost:7000/api/accounts'+params);
   }
 
   getListe(){
-    return this.httpClient.get('http://localhost:8080/test/accounts');
+    return this.httpClient.get('http://localhost:7000/api/accounts');
   }
 
   update(account: Account){
-    return this.httpClient.put('http://localhost:8080/test/account', account);
+    return this.httpClient.put('http://localhost:7000/api/account', account);
   }
   
   insert(account: Account){
-    return this.httpClient.post('http://localhost:8080/test/account', account);
+    return this.httpClient.post('http://localhost:7000/api/account', account);
   }
   delete(accountNumber) {
-    return this.httpClient.delete('http://localhost:8080/test/account/'+accountNumber);
+    return this.httpClient.delete('http://localhost:7000/api/account/'+accountNumber);
   }
  
   getListCustomer(){
      //Mengambil Data dari objek customer
-    return this.httpClient.get('http://localhost:8080/test/customers');
+    return this.httpClient.get('http://localhost:7000/api/customers');
   }
 }

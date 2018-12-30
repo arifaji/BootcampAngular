@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Transaction } from '../transaction';
 import { TransactionService } from '../transaction.service';
 import { TransactionUpdateComponent } from '../update/transaction-update.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-list',
@@ -18,16 +19,20 @@ export class TransactionListComponent implements OnInit {
    showDetail: boolean = false;
    selectedTransaction : Transaction = new Transaction();
 
-  constructor(private transactionService: TransactionService) { }
+  constructor(private transactionService: TransactionService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadData();
+    this.activatedRoute.params.subscribe(params =>{
+      const account:String=params['account'];
+      this.loadData(account);
+    })  
   }
 
-  loadData(){
-    this.transactionService.getList().subscribe((response)=>{
+  loadData(account?){
+    this.transactionService.getList(account).subscribe((response)=>{
       console.log(JSON.stringify(response));
-      Object.assign(this.listTransaction, response);
+      this.listTransaction=[];
+      Object.assign(this.listTransaction, response['values']);
     }, (err)=>{
       alert('error : '+JSON.stringify(err));
     });
@@ -65,6 +70,7 @@ export class TransactionListComponent implements OnInit {
     if(confirm('Hapus data ?')){
       this.transactionService.delete(id).subscribe(res =>{
         alert('berhasil');
+        location.reload();
         this.loadData();
       }, err =>{
         alert('gagal');

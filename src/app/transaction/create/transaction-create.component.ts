@@ -28,14 +28,20 @@ export class TransactionCreateComponent implements OnInit {
       type:['', Validators.required],
       amount:['', Validators.required],
       amountsign:['', Validators.required],
-      account:['', Validators.required]
+      account:['',Validators.required]
     });
     this.getAccount();
   }
 
+  setSelectedAccount(account : Account){
+    this.selectaccount = account;
+    this.transactioniFormGroup.controls['account'].setValue(account.accountNumber);
+    this.transactioniFormGroup.updateValueAndValidity();
+  }
+
   getAccount(){
     this.transactionService.getListAccount().subscribe((response)=>{
-      this.selectaccount=response;
+      this.selectaccount=response['values'];
       console.log(this.selectaccount);
     },(err)=>{
       alert('error : '+JSON.stringify(err));
@@ -49,11 +55,17 @@ export class TransactionCreateComponent implements OnInit {
       transaction.amount = this.transactioniFormGroup.controls['amount'].value;
       transaction.amountsign = this.transactioniFormGroup.controls['amountsign'].value;
 
-      let pilihaccount: Account = new Account();{
-        pilihaccount.accountNumber = this.transactioniFormGroup.controls['account'].value;
-      }
+      // let pilihaccount: Account = new Account();{
+      //   pilihaccount.accountNumber = this.transactioniFormGroup.controls['account'].value;
+      // }
 
-      transaction.account = pilihaccount;
+      // transaction.account = pilihaccount;
+
+      let selectaccount: Account = new Account();{
+        selectaccount.accountNumber = this.transactioniFormGroup.controls['account'].value;
+      }
+      transaction.account = selectaccount;
+
       this.transactionService.insert(transaction).subscribe((response)=>{
         console.log(JSON.stringify(response));
         this.result.emit(true);

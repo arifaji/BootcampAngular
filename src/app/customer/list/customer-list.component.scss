@@ -1,3 +1,16 @@
 th[colspan="3"] {
     text-align: center;
 }
+.btn {
+    background-color: rgba(255,0,0,0);
+    border: none;
+    color: black;
+    padding: 0px 0px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Darker background on mouse-over */
+//   .btn:hover {
+//     background-color: RoyalBlue;
+//   }

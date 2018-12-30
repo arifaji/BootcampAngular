@@ -35,7 +35,7 @@ export class ComboCustomerComponent implements OnInit {
     this.customerService.getList().subscribe(
       (response)=>{
         console.log(JSON.stringify(response));
-        Object.assign(this.listCustomer, response);
+        Object.assign(this.listCustomer, response['values']);
       }, (err)=> {
         alert('error : '+JSON.stringify(err));
       }

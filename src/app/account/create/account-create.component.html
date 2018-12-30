@@ -1,4 +1,4 @@
-<h3>Edit Customer</h3>
+<h3>Insert Customer</h3>
 <form [formGroup]="accountFormGroup">
     <div class="form-group row">
         <label class="col-sm-2 col-form-label offset-md-3">Account Number</label>
@@ -24,7 +24,7 @@
         </div>
     </div>
     
-    <button type="submit" (click)="submitData()" class="btn btn-primary offset-md-3">Submit</button>
+    <button type="submit" [disabled]="!accountFormGroup.valid" (click)="submitData()" class="btn btn-primary offset-md-3">Submit</button>
 
 </form>
 <br/><br/>

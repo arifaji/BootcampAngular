@@ -18,11 +18,12 @@
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label offset-md-3">Username</label>
+        <!-- <label class="col-sm-2 col-form-label offset-md-3">Username</label> -->
         <div class="col-sm-4">
-          <select formControlName="customer">
+            <!-- <app-combo-customer (customer)="setSelectedCustomer($event)" ></app-combo-customer> -->
+            <select *ngIf="false" class="form-control" formControlName="customer">
             <option *ngFor="let cust of selectcustomer" [ngValue]="cust.customerNumber">{{cust.username}}</option>
-          </select>   
+            </select>   
         </div>
     </div>
     
@@ -30,19 +31,3 @@
     <button class="btn btn-danger offset-md-3" (click)="cancelUpdate()">Close</button>
 </form>
 <br/><br/>
-
-<!-- <form [formGroup]="accountFormGroup">
-    Account Number : <input type="number" formControlName="accountNumber">
-    <br/><br/>
-    Open Date : <input type="date" formControlName="openDate">
-    <br/><br/>
-    Balance : <input type="number" formControlName="balance">
-    <br/><br/>
-    Username : 
-    <select formControlName="customer">
-      <option *ngFor="let cust of selectcustomer" [ngValue]="cust.customerNumber">{{cust.username}}</option>
-    </select>
-    <br/><br/>
-    <button (click)="submitData()" type="submit" [disabled]="!accountFormGroup.valid">Submit</button>
-    <button (click)="cancelUpdate()">Close</button>
-</form> -->

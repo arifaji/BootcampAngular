@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { Customer } from 'src/app/customer/customer';
 import { Account } from '../account';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-account-create',
@@ -12,7 +13,7 @@ import { Account } from '../account';
 export class AccountCreateComponent implements OnInit {
 
   selectedCustomer: Object;
-
+  
   @Input()
   account: Account;
 
@@ -20,14 +21,14 @@ export class AccountCreateComponent implements OnInit {
   result = new EventEmitter();
   accountFormGroup: FormGroup;
 
-  constructor(private accountService: AccountService, private formBuilder:FormBuilder) { }
+  constructor(private accountService: AccountService, private formBuilder:FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.accountFormGroup = this.formBuilder.group({
-      accountNumber:[''],
-      openDate:[''],
-      balance:[''],
-      customer:['']
+      accountNumber:['',Validators.required],
+      openDate:['',Validators.required],
+      balance:['',Validators.required],
+      customer:['',Validators.required]
     });
     this.getCustomer();
   }
@@ -59,6 +60,7 @@ export class AccountCreateComponent implements OnInit {
       this.accountService.insert(account).subscribe((response)=>{
         console.log(JSON.stringify(response));
         this.result.emit(true);
+        this.router.navigate(['/account'])
       }, (err)=>{
         alert('error : '+JSON.stringify(err));
       });

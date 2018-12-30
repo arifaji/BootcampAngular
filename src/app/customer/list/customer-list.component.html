@@ -25,15 +25,15 @@
           <td>{{cust.phoneType}}</td>
           <td>{{cust.phoneNumber }}</td>
           <td>
-              <i class="far fa-eye" (click)="viewAccount(cust.customerNumber);"></i>
+            <button class="btn"><i class="far fa-eye" (click)="viewAccount(cust.customerNumber);"></i></button>
               <!-- <button class="btn btn-primary btn-sm" (click)="viewAccount(cust.customerNumber);">View</button> -->
           </td>
           <td>
-              <i class="fas fa-edit" (click)="selectCustomer(cust);"></i>
+            <button class="btn"><i class="fas fa-edit" (click)="selectCustomer(cust);"></i></button>
             <!-- <button class="btn btn-info btn-sm" (click)="selectCustomer(cust);">Edit</button> -->
           </td>
           <td>
-              <i class="fas fa-trash" (click)="deleteCustomer(cust.customerNumber);"></i>
+            <button class="btn"><i class="fas fa-trash" (click)="deleteCustomer(cust.customerNumber);"></i></button>
               <!-- <button class="btn btn-danger btn-sm" (click)="deleteCustomer(cust.customerNumber);">Delete</button> -->
           </td>
         </tr>

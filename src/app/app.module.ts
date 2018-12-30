@@ -15,10 +15,10 @@ import { AccountListComponent } from './account/list/account-list.component';
 import { AccountCreateComponent } from './account/create/account-create.component';
 import { ComboCustomerComponent } from './shared/component/customer/combo-customer.component';
 import { AccountUpdateComponent } from './account/update/account-update.component';
-import { AccountSelectComponent } from './account/select/account-select.component';
 import { TransactionListComponent } from './transaction/list/transaction-list.component';
 import { TransactionUpdateComponent } from './transaction/update/transaction-update.component';
 import { TransactionCreateComponent } from './transaction/create/transaction-create.component';
+import { ComboAccountComponent } from './shared/component/account/combo-account.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +31,10 @@ import { TransactionCreateComponent } from './transaction/create/transaction-cre
     AccountCreateComponent,
     ComboCustomerComponent,
     AccountUpdateComponent,
-    AccountSelectComponent,
     TransactionListComponent,
     TransactionUpdateComponent,
-    TransactionCreateComponent    
+    TransactionCreateComponent,
+    ComboAccountComponent    
   ],
   imports: [
     BrowserModule,
